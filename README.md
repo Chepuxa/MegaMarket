@@ -1,8 +1,8 @@
 # Вступительное задание в Летнюю Школу Бэкенд Разработки Яндекса 2022
 
-## Requirements
+## Требования
 
-For building the application you need:
+Для локального запуска необходимы:
 
 - [JDK 1.8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
 - [Maven 3](https://maven.apache.org)
@@ -16,7 +16,9 @@ For building the application you need:
 ```
 mvn spring-boot:run
 ```
+
 При локальном запуске нужно указать ссылку на БД postgres и авторизационные данные в файле ```application.yml```:
+
 ```
 spring:
   datasource:
