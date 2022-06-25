@@ -1,0 +1,18 @@
+spring:
+  jpa:
+    generate-ddl: true
+    properties:
+      hibernate:
+        id:
+          optimizer:
+            pooled:
+              preferred: pooled-lo
+        jdbc:
+          time_zone: UTC
+  jackson:
+    deserialization:
+      fail-on-unknown-properties: true
+springdoc:
+  override-with-generic-response: false
+  swagger-ui:
+    path: /swagger
