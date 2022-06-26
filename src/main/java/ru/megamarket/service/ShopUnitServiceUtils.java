@@ -240,6 +240,20 @@ public class ShopUnitServiceUtils {
     }
 
     /**
+     * Если элемент из набора с типом CATEGORY уже присутствует в базе, добавляем к нему его детей из базы
+     *
+     * @param shopUnitEntitiesFromDb набор элементов из базы
+     * @param shopUnitEntities набор элементов из запроса
+     */
+    public void addChildren(Set<ShopUnitEntity> shopUnitEntitiesFromDb, Map<UUID, ShopUnitEntity> shopUnitEntities) {
+        shopUnitEntitiesFromDb.forEach(shopUnitEntity -> {
+            if (shopUnitEntity.getType().equals(ShopUnitType.CATEGORY) && shopUnitEntity.getChildren() != null) {
+                shopUnitEntities.get(shopUnitEntity.getId()).setChildren(shopUnitEntity.getChildren());
+            }
+        });
+    }
+
+    /**
      * Находит элементы типа OFFER в базе данных, дата которых находится в промежутке [endTime - saleRange(hours), endTime].
      *
      * @param endTime конец временного промежутка

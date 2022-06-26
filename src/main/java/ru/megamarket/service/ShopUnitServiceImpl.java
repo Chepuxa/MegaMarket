@@ -11,6 +11,7 @@ import ru.megamarket.dto.ShopUnit;
 import ru.megamarket.dto.ShopUnitImport;
 import ru.megamarket.dto.ShopUnitStatisticResponse;
 import ru.megamarket.dto.ShopUnitStatisticUnit;
+import ru.megamarket.dto.ShopUnitType;
 import ru.megamarket.exceptions.IdShouldBeUniqueException;
 import ru.megamarket.exceptions.ItemNotFoundException;
 import ru.megamarket.exceptions.ParentShouldBeCategoryException;
@@ -87,6 +88,9 @@ public class ShopUnitServiceImpl implements ShopUnitService {
         if (shopUnitServiceUtils.checkIfTypeChanged(entitiesBeforeUpdate, shopUnitsMap)) {
             throw new ShopUnitTypeNotUpdatableException();
         }
+
+        /* Добавляем категориям из запроса, которые уже есть в дб, детей */
+        shopUnitServiceUtils.addChildren(entitiesBeforeUpdate, shopUnitsMap);
 
         /* Для тех элементов, которые уже есть в базе, берем значение поля parentId элемента из базы и добавляем в общий пул */
         Set<UUID> entitiesParentIdsBeforeUpdate = shopUnitServiceUtils.collectParentIds(entitiesBeforeUpdate);
