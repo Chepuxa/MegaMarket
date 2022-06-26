@@ -3,6 +3,7 @@ package ru.megamarket.dto;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import ru.megamarket.exceptions.constraints.CategoryPriceConstraint;
+import ru.megamarket.exceptions.constraints.ParentIdConstraint;
 import ru.megamarket.openapi.OpenApiExamples;
 
 import javax.validation.constraints.NotNull;
@@ -10,6 +11,7 @@ import java.util.UUID;
 
 @Data
 @CategoryPriceConstraint
+@ParentIdConstraint
 @Schema(example = OpenApiExamples.IMPORT)
 public class ShopUnitImport {
 
